@@ -19,7 +19,7 @@ public class SpawnersManager : MonoBehaviour
 
         while (_isSpawning)
         {
-            GetRandomSpawner().SpawnEnemie();
+            GetRandomSpawner().SpawnEnemy();
             yield return wait;
         }
 
