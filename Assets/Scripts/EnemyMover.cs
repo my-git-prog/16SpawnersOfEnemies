@@ -4,16 +4,26 @@ public class EnemyMover : MonoBehaviour
 {
     [SerializeField] private float _speed = 3f;
 
-    private Vector3 _direction;
+    private TargetMover _target;
 
     private void Update()
     {
-        transform.Translate(_direction * _speed * Time.deltaTime, Space.World);
+        Rotate();
+        Move();
     }
 
-    public void SetDirection(Vector3 direction)
+    private void Rotate()
     {
-        _direction = direction;
-        transform.LookAt(transform.position + direction);
+        transform.LookAt(_target.transform.position);
+    }
+
+    private void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+    }
+
+    public void SetTarget(TargetMover target)
+    {
+        _target = target;
     }
 }
